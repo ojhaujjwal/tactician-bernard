@@ -26,19 +26,19 @@ abstract class Receiver
     /**
      * Handles the message
      *
-     * @param Message $message
+     * @param QueueCommand $command
      */
-    abstract public function handle(Message $message);
+    abstract public function handle(QueueCommand $command);
 
     /**
      * Makes the receiver callable to be able to register it in a router
      *
-     * @param Message $message
+     * @param QueueCommand $command
      *
      * @return mixed
      */
-    public function __invoke(Message $message)
+    public function __invoke(QueueCommand $command)
     {
-        return $this->handle($message);
+        return $this->handle($command);
     }
 }

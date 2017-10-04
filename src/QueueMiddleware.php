@@ -30,17 +30,12 @@ final class QueueMiddleware implements Middleware
      */
     public function execute($command, callable $next)
     {
-        if ($command instanceof Message) {
-            $this->producer->produce($command);
-
+        if ($command instanceof QueueCommand) {
+            $this->producer->produce($command, $command->getQueueName());
             return;
         }
 
         if ($command instanceof QueuedCommand) {
-            $command = $command->getCommand();
-        }
-
-        if ($command instanceof QueueCommand) {
             $command = $command->getCommand();
         }
 

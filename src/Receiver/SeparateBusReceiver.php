@@ -2,7 +2,7 @@
 
 namespace League\Tactician\Bernard\Receiver;
 
-use Bernard\Message;
+use League\Tactician\Bernard\QueueCommand;
 use League\Tactician\Bernard\Receiver;
 
 /**
@@ -13,8 +13,8 @@ final class SeparateBusReceiver extends Receiver
     /**
      * {@inheritdoc}
      */
-    public function handle(Message $message)
+    public function handle(QueueCommand $command)
     {
-        return $this->commandBus->handle($message);
+        return $this->commandBus->handle($command);
     }
 }
